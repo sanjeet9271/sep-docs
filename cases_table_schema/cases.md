@@ -376,17 +376,17 @@ This section maps database columns and JSONB fields to Salesforce API response p
 
 | DB Column | API Request | API Response Path | Sample Value | Notes |
 |-----------|-------------|-------------------|--------------|-------|
-| `case_id` | Request 1 | `compositeResponse[0].body.records[0].Id` | "500WR00000i20KLYAY" | SF Case ID (18 chars) |
-| `case_number` | Request 1 | `compositeResponse[0].body.records[0].CaseNumber` | "06224721" | Human-readable case number |
-| `case_type` | Request 1 | `compositeResponse[0].body.records[0].twodscp__Case_Type__c` | "Dealer Warranty Claim" | Extract to column |
-| `account_id` | Request 1 | `compositeResponse[0].body.records[0].Account.twodscp__External_ID__c` | "1686224845368638" | External account ID |
-| `status` | Request 1 | `compositeResponse[0].body.records[0].twodscp__External_Case_Status__c` OR `.Status` | "Closed" | Prefer External Status |
+| `case_id` | Request 1 | `Id` | "500WR00000i20KLYAY" | SF Case ID (18 chars) |
+| `case_number` | Request 1 | `CaseNumber` | "06224721" | Human-readable case number |
+| `case_type` | Request 1 | `twodscp__Case_Type__c` | "Dealer Warranty Claim" | Extract to column |
+| `account_id` | Request 1 | `Account.twodscp__External_ID__c` | "1686224845368638" | External account ID |
+| `status` | Request 1 | `twodscp__External_Case_Status__c` OR `Status` | "Closed" | Prefer External Status |
 | `progress` | N/A | **DEPRECATED** | NULL | Frontend calculates from status |
-| `serial_number` | Request 1 | `compositeResponse[0].body.records[0].twodscp__Serial_Number__r.twodscp__Unique_Id__c` | "5934550042####95060-00" | Format: serial####part |
-| `part_number` | Request 1 | `compositeResponse[0].body.records[0].twodscp__Part__r.twodscp__External_Number__c` | "95060-00" | From part external number |
-| `product_description` | Request 1 | `compositeResponse[0].body.records[0].twodscp__Part__r.Description` | "TM200 Display Module" | From part description |
-| `subject` | Request 1 | `compositeResponse[0].body.records[0].Subject` | "Intermittent communication..." | Case subject |
-| `submitted_at` | Request 1 | `compositeResponse[0].body.records[0].CreatedDate` | "2025-08-01T11:00:00Z" | Original submission date |
+| `serial_number` | Request 1 | `twodscp__Serial_Number__r.twodscp__Unique_Id__c` | "5934550042####95060-00" | Format: serial####part |
+| `part_number` | Request 1 | `twodscp__Part__r.twodscp__External_Number__c` | "95060-00" | From part external number |
+| `product_description` | Request 1 | `twodscp__Part__r.Description` | "TM200 Display Module" | From part description |
+| `subject` | Request 1 | `Subject` | "Intermittent communication..." | Case subject |
+| `submitted_at` | Request 1 | `CreatedDate` | "2025-08-01T11:00:00Z" | Original submission date |
 | `case_data` | Requests 1 & 2 | **See JSONB Mapping below** | {...} | Complete payload |
 | `synced_at` | N/A | System timestamp (NOW()) | "2025-12-23T12:00:00Z" | Last sync timestamp |
 
@@ -396,7 +396,7 @@ This section maps database columns and JSONB fields to Salesforce API response p
 
 ### Section 1: Core Case Fields (`case_data.case`)
 
-Maps to **Request 1** compositeResponse[0].body.records[0]
+Maps to **Request 1** response
 
 | case_data Field | Salesforce API Field | Sample Value |
 |-----------------|----------------------|--------------|
@@ -450,7 +450,7 @@ Maps to **Request 1** compositeResponse[0].body.records[0]
 
 ### Section 2: Service Parts (`case_data.serviceParts[]`)
 
-Maps to **Request 2** compositeResponse[0].body.records[]
+Maps to **Request 2** response (attachments)
 
 | case_data Field | Salesforce API Field | Sample Value |
 |-----------------|----------------------|--------------|
@@ -474,7 +474,7 @@ Maps to **Request 2** compositeResponse[0].body.records[]
 
 ### Section 3: Labor Charges (`case_data.laborCharges[]`)
 
-Maps to **Request 2** compositeResponse[1].body.records[]
+Maps to **Request 2** response (comments)
 
 | case_data Field | Salesforce API Field | Sample Value |
 |-----------------|----------------------|--------------|
@@ -489,7 +489,7 @@ Maps to **Request 2** compositeResponse[1].body.records[]
 
 ### Section 4: Other Charges (`case_data.otherCharges[]`)
 
-Maps to **Request 2** compositeResponse[2].body.records[]
+Maps to **Request 2** response (feed items)
 
 | case_data Field | Salesforce API Field | Sample Value |
 |-----------------|----------------------|--------------|
