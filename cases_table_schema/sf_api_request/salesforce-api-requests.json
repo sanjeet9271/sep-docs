@@ -1,0 +1,105 @@
+{
+  "caseDetailsRequest_asProvided": {
+    "description": "Case details composite request body (as provided; no Id/CaseNumber added)",
+    "endpoint": "/services/data/v60.0/sobjects/composite",
+    "method": "POST",
+    "body": {
+      "allOrNone": false,
+      "compositeRequest": [
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Case_Type__c, Subject, CurrencyIsoCode, Priority, Description, twodscp__Failure_Verified__c, twodscp__Steps_Taken_To_Verify_The_Failure__c, twodscp__Repair_Description__c, twodscp__Symptom__c, twodscp__Failure__c, twodscp__Atlas_Case_Number__c,twodscp__Previous_Atlas_Number__c, twodscp__Service_Bulletin__r.twodscp__External_Id__c, twodscp__Other_Service_Bulletins__c, twodscp__Date_Time_Received__c, twodscp__Date_Time_Repaired__c, twodscp__Date_Time_Previous_Repair__c, twodscp__Part_Assistance__c, twodscp__Technical_Analysis__c, twodscp__Technician__r.Name, twodscp__Technician__r.twodscp__External_Id__c, Contact.Name, Contact.twodscp__External_Id__c, Account.twodscp__External_ID__c, twodscp__Serial_Number__r.Name, twodscp__Serial_Number__r.twodscp__Unique_Id__c, twodscp__Part__r.twodscp__External_Number__c, twodscp__Part__r.Description, twodscp__Repaired_Product_Part_Number__r.twodscp__External_Number__c, twodscp__Sales_Order_Number__c, twodscp__Return_To_Location_Text__c, twodscp__PolicyType__c, twodscp__Policy_Number__c, twodscp__Applicable_Failure_Categories__c, twodscp__Warranty_Exception__c, twodscp__Plan_Type__c, twodscp__Type_of_Contract__c, Status, twodscp__Failure_Category__c, twodscp__External_Case_Status__c, twodscp__Partner_CRM_Case__c,Origin from Case where CaseNumber='{{case_number}}'",
+          "referenceId": "caseDetailsQuery"
+        }
+      ]
+    }
+  },
+  "caseDetailsRequest": {
+    "description": "Query to retrieve case details with related information",
+    "endpoint": "/services/data/v60.0/sobjects/composite",
+    "method": "POST",
+    "body": {
+      "allOrNone": false,
+      "compositeRequest": [
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select Id, CaseNumber, twodscp__Case_Type__c, Subject, CurrencyIsoCode, Priority, Description, twodscp__Failure_Verified__c, twodscp__Steps_Taken_To_Verify_The_Failure__c, twodscp__Repair_Description__c, twodscp__Symptom__c, twodscp__Failure__c, twodscp__Atlas_Case_Number__c,twodscp__Previous_Atlas_Number__c, twodscp__Service_Bulletin__r.twodscp__External_Id__c, twodscp__Other_Service_Bulletins__c, twodscp__Date_Time_Received__c, twodscp__Date_Time_Repaired__c, twodscp__Date_Time_Previous_Repair__c, twodscp__Part_Assistance__c, twodscp__Technical_Analysis__c, twodscp__Technician__r.Name, twodscp__Technician__r.twodscp__External_Id__c, Contact.Name, Contact.twodscp__External_Id__c, Account.twodscp__External_ID__c, twodscp__Serial_Number__r.Name, twodscp__Serial_Number__r.twodscp__Unique_Id__c, twodscp__Part__r.twodscp__External_Number__c, twodscp__Part__r.Description, twodscp__Repaired_Product_Part_Number__r.twodscp__External_Number__c, twodscp__Sales_Order_Number__c, twodscp__Return_To_Location_Text__c, twodscp__PolicyType__c, twodscp__Policy_Number__c, twodscp__Applicable_Failure_Categories__c, twodscp__Warranty_Exception__c, twodscp__Plan_Type__c, twodscp__Type_of_Contract__c, twodscp__MTP_Case_Reference__c, Status, twodscp__Failure_Category__c, twodscp__External_Case_Status__c, twodscp__Partner_CRM_Case__c,Origin from Case where CaseNumber='{{case_number}}'",
+          "referenceId": "caseDetailsQuery"
+        }
+      ]
+    }
+  },
+  "caseRelatedDataRequest_asProvided": {
+    "description": "Case related data composite request body (as provided; no Id fields added)",
+    "endpoint": "/services/data/v60.0/sobjects/composite",
+    "method": "POST",
+    "body": {
+      "allOrNone": false,
+      "compositeRequest": [
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Part_Number__r.twodscp__External_Number__c, twodscp__Price__c, twodscp__Quantity__c, twodscp__Total_Part_Cost__c, twodscp__Additional_Reimbursement__c, twodscp__Additional_Reimbursement_Amount__c, CurrencyIsoCode, twodscp__Return_Part__c, twodscp__Missing_Price__c, twodscp__Is_Part_Recently_Purchased__c, twodscp__Is_Warrantable__c, twodscp__External_Id__c, twodscp__Case__r.Id, twodscp__Case__r.CaseNumber, twodscp__Is_Part_Picked_From_BOM__c, twodscp__API_Price__c, twodscp__API_MSG__c from twodscp__Service_Part__c where twodscp__Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "servicePartsQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Hours__c, twodscp__Requested_Hours__c, twodscp__Rate__c, twodscp__Total_Labor_Cost__c, twodscp__Is_Warrantable__c, CurrencyIsoCode, twodscp__Case__r.Id, twodscp__Case__r.CaseNumber from twodscp__Labor__c where twodscp__Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "laborQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Cost_Category_Type__c, twodscp__Amount_Per_Unit__c, twodscp__Unit_Usage__c, twodscp__Amount__c, twodscp__Is_Warrantable__c, CurrencyIsoCode, twodscp__Case__r.Id, twodscp__Case__r.CaseNumber from twodscp__Other_Cost__c where twodscp__Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "otherCostQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select CommentBody, Parent.Id, Parent.CaseNumber from CaseComment where Parent.CaseNumber='{{case_number}}'",
+          "referenceId": "caseCommentsQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select Name, Case__r.CaseNumber, Description__c, Link__c from Cloud_Attachment__c where Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "attachmentsQuery"
+        }
+      ]
+    }
+  },
+  "caseRelatedDataRequest": {
+    "description": "Query to retrieve case related data including service parts, labor, other costs, comments, and attachments (includes Id fields for DB sync)",
+    "endpoint": "/services/data/v60.0/sobjects/composite",
+    "method": "POST",
+    "body": {
+      "allOrNone": false,
+      "compositeRequest": [
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Part_Number__r.twodscp__External_Number__c, twodscp__Price__c, twodscp__Quantity__c, twodscp__Total_Part_Cost__c, twodscp__Additional_Reimbursement__c, twodscp__Additional_Reimbursement_Amount__c, CurrencyIsoCode, twodscp__Return_Part__c, twodscp__Missing_Price__c, twodscp__Is_Part_Recently_Purchased__c, twodscp__Is_Warrantable__c, twodscp__External_Id__c, twodscp__Case__r.Id, twodscp__Case__r.CaseNumber, twodscp__Is_Part_Picked_From_BOM__c, twodscp__API_Price__c, twodscp__API_MSG__c from twodscp__Service_Part__c where twodscp__Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "servicePartsQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Hours__c, twodscp__Requested_Hours__c, twodscp__Rate__c, twodscp__Total_Labor_Cost__c, twodscp__Is_Warrantable__c, CurrencyIsoCode, twodscp__Case__r.Id, twodscp__Case__r.CaseNumber from twodscp__Labor__c where twodscp__Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "laborQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select twodscp__Cost_Category_Type__c, twodscp__Amount_Per_Unit__c, twodscp__Unit_Usage__c, twodscp__Amount__c, twodscp__Is_Warrantable__c, CurrencyIsoCode, twodscp__Case__r.Id, twodscp__Case__r.CaseNumber from twodscp__Other_Cost__c where twodscp__Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "otherCostQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select Id, CommentBody, Parent.Id, Parent.CaseNumber from CaseComment where Parent.CaseNumber='{{case_number}}'",
+          "referenceId": "caseCommentsQuery"
+        },
+        {
+          "method": "GET",
+          "url": "/services/data/v60.0/query?q=Select Id, Name, Case__r.CaseNumber, Description__c, Link__c, Attachment_Type__c from Cloud_Attachment__c where Case__r.CaseNumber='{{case_number}}'",
+          "referenceId": "attachmentsQuery"
+        }
+      ]
+    }
+  }
+}
+
+
+
