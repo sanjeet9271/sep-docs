@@ -374,21 +374,21 @@ This section maps database columns and JSONB fields to Salesforce API response p
 
 ## Table Columns Mapping
 
-| DB Column | API Request | API Response Path | Sample Value | Notes |
-|-----------|-------------|-------------------|--------------|-------|
-| `case_id` | Request 1 | `Id` | "500WR00000i20KLYAY" | SF Case ID (18 chars) |
-| `case_number` | Request 1 | `CaseNumber` | "06224721" | Human-readable case number |
-| `case_type` | Request 1 | `twodscp__Case_Type__c` | "Dealer Warranty Claim" | Extract to column |
-| `account_id` | Request 1 | `Account.twodscp__External_ID__c` | "1686224845368638" | External account ID |
-| `status` | Request 1 | `twodscp__External_Case_Status__c` OR `Status` | "Closed" | Prefer External Status |
-| `progress` | N/A | **DEPRECATED** | NULL | Frontend calculates from status |
-| `serial_number` | Request 1 | `twodscp__Serial_Number__r.twodscp__Unique_Id__c` | "5934550042####95060-00" | Format: serial####part |
-| `part_number` | Request 1 | `twodscp__Part__r.twodscp__External_Number__c` | "95060-00" | From part external number |
-| `product_description` | Request 1 | `twodscp__Part__r.Description` | "TM200 Display Module" | From part description |
-| `subject` | Request 1 | `Subject` | "Intermittent communication..." | Case subject |
-| `submitted_at` | Request 1 | `CreatedDate` | "2025-08-01T11:00:00Z" | Original submission date |
-| `case_data` | Requests 1 & 2 | **See JSONB Mapping below** | {...} | Complete payload |
-| `synced_at` | N/A | System timestamp (NOW()) | "2025-12-23T12:00:00Z" | Last sync timestamp |
+| DB Column | API Response Path | Sample Value | Notes |
+|-----------|-------------------|--------------|-------|
+| `case_id` | `Id` | "500WR00000i20KLYAY" | SF Case ID (18 chars) |
+| `case_number` | `CaseNumber` | "06224721" | Human-readable case number |
+| `case_type` | `twodscp__Case_Type__c` | "Dealer Warranty Claim" | Extract to column |
+| `account_id` | `Account.twodscp__External_ID__c` | "1686224845368638" | External account ID |
+| `status` | `twodscp__External_Case_Status__c` OR `Status` | "Closed" | Prefer External Status |
+| `progress` | **DEPRECATED** | NULL | Frontend calculates from status |
+| `serial_number` | `twodscp__Serial_Number__r.twodscp__Unique_Id__c` | "5934550042####95060-00" | Format: serial####part |
+| `part_number` | `twodscp__Part__r.twodscp__External_Number__c` | "95060-00" | From part external number |
+| `product_description` | `twodscp__Part__r.Description` | "TM200 Display Module" | From part description |
+| `subject` | `Subject` | "Intermittent communication..." | Case subject |
+| `submitted_at` | `CreatedDate` | "2025-08-01T11:00:00Z" | Original submission date |
+| `case_data` | **See JSONB Mapping below** | {...} | Complete payload |
+| `synced_at` | System timestamp (NOW()) | "2025-12-23T12:00:00Z" | Last sync timestamp |
 
 ---
 
